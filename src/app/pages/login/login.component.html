@@ -1,0 +1,10 @@
+<div class="container-login">
+  <div class="card-box">
+    <h3>INICIAR SESIÓN</h3>
+    <form (submit)="onSubmit($event)" >
+      <input type="text" placeholder="Usuario" class="dataUser" [(ngModel)]="dataUser.user" name="user"> 
+      <input type="password" placeholder="Contraseña" class="dataUser" [(ngModel)]="dataUser.password" name="password">
+      <button type="submit" > Ingresar </button>
+    </form>
+  </div>
+</div>
