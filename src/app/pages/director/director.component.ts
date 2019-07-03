@@ -46,6 +46,10 @@ export class DirectorComponent implements OnInit {
   }
 
   createUser(){
+    this.http.get("http://dev.atypax.com/jkhan/api.php?function=createuser&firstname=" +  this.usuarioCreate.name +"&lastname=" + this.usuarioCreate.lastname + "&school=" + this.session.getObject('user').data[0].school + "&username=" + this.usuarioCreate.nameUser + " &password=" + this.usuarioCreate.password)
+    .pipe(map(res => res)).subscribe((res)=> {
+      console.log(res)
+    })
     console.log(this.usuarioCreate)
   }
 
