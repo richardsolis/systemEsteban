@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent},
 
   { path: 'secretary',component: SecretaryComponent}, 
-  { path: 'secretary/course',component: CourseComponent}, 
+  { path: 'secretary/course/:id',component: CourseComponent}, 
 
   {path: 'director', component: DirectorComponent,},
   {path: 'director/secretary', component: SecretaryIComponent,},

@@ -1,0 +1,18 @@
+.container-w h3 {
+    display: flex;
+    align-items: center;
+    button {
+        margin-right: 10px;
+        color: #a9a9a9;
+        border: 1px solid;
+        border-radius: 46px;
+        outline: none;
+        font-size: 15px;
+        width: 78px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0 10px;
+    }
+}
