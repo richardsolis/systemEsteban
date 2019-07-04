@@ -84,7 +84,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <button type="button" class="btn btn-primary" style="margin-bottom:20px;" (click)="addField()">
+                    <button *ngIf="!addActive" type="button" class="btn btn-primary" style="margin-bottom:20px;" (click)="addField()">
                             <i class="fa fa-plus"></i> Añadir campo
                     </button>
                     <table class="table">
@@ -96,6 +96,14 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr *ngIf="addActive" style="background: rgba(42, 245, 152, 0.21);">
+                                <th scope="row">0</th>
+                                <td><input type="text" class="form-control" [(ngModel)]="nameAddField"></td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" (click)="saveAddField()" style="margin-right:10px;"><i class="fa fa-save"></i></button>
+                                    <button type="button" class="btn btn-danger" (click)="cancelAdd()"><i class="fa fa-times"></i></button>
+                                </td>
+                            </tr>
                             <tr *ngFor = "let fields of fieldsCourse; let i = index">
                                 <th scope="row">{{i+1}}</th>
                                 <td>{{fields.name}}</td>

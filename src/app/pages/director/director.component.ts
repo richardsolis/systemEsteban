@@ -15,6 +15,7 @@ export class DirectorComponent implements OnInit {
   public listCourse;
   public listSecretarys;
   public fieldsCourse;
+  public nameAddField = '';
   public usuarioCreate = {
     name: '',
     lastname: '',
@@ -22,7 +23,7 @@ export class DirectorComponent implements OnInit {
     password: '',
     password2: ''
   }
-
+  public addActive = false;
   public namegrades = { namegrades :[
     {name: 'prueba 6'}
   ]};
@@ -80,10 +81,24 @@ export class DirectorComponent implements OnInit {
   }
 
   addField(){
-    this.http.post("http://dev.atypax.com/jkhan/api.php?function=insertfieldsgrades&school="+ this.session.getObject('user').data[0].school + "&course=" + this.courseId,this.namegrades).pipe(map(res => res)).subscribe((res)=> {
-      console.log(res)
-    })
-    
+    this.addActive = true;
+  }
+
+  saveAddField(){
+    console.log(this.nameAddField)
+    if (this.nameAddField != '') {
+      this.namegrades.namegrades[0].name = this.nameAddField;
+      this.http.post("http://dev.atypax.com/jkhan/api.php?function=insertfieldsgrades&school="+ this.session.getObject('user').data[0].school + "&course=" + this.courseId,this.namegrades).pipe(map(res => res)).subscribe((res)=> {
+        console.log(res)
+        this.addActive = false;
+        this.nameAddField = '';
+        this.namegrades.namegrades[0].name = '';
+      })
+    }
+  }
+
+  cancelAdd(){
+    this.addActive = false;
   }
 
 
