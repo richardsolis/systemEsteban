@@ -1,75 +1,113 @@
 <div class="container-dual">
         <div class="container-w">
             <div class="title-button">
-                    <h3>Lista de Secretarios</h3>
-                    <button (click)="goBack()" type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#createUser"><i class="fa fa-user-plus" style="margin-right: 6px;"></i>Crear Secretario</button>
+                <h3>Lista de Secretarios</h3>
+                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#createUser"><i class="fa fa-user-plus" style="margin-right: 6px;"></i>Crear Secretario</button>
             </div>
-                <table class="table table-striped">
-                    <thead>
-                      <tr>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Acciones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let secretaries of listSecretarys">
-                        <th scope="row">1</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let secretaries of listSecretarys; let i = index;">
+                        <th scope="row">{{i+1}}</th>
                         <td>{{secretaries.firstname}}</td>
                         <td>
                             <button type="button" class="btn btn-info" (click)="edit()" style="margin-right:10px;"><i class="fa fa-edit"></i></button>
                             <button type="button" class="btn btn-danger" (click)="delete()"><i class="fa fa-trash"></i></button>
                         </td>
-                      </tr>
+                    </tr>
                 </tbody>
-             </table>
+            </table>
         </div>
-
-
+    
         <div class="container-w">
-                <h3>Lista de Cursos</h3>
-                <table class="table table-striped">
-                    <thead>
-                      <tr>
+            <h3 class="listCurse-title">Lista de Cursos</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Acciones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>richard</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let course of listCourse; let i = index;">
+                        <th scope="row">{{i + 1}}</th>
+                        <td>{{course.name}}</td>
                         <td>
-                            <button type="button" class="btn btn-info" (click)="goCourse()"><i class="fa fa-eye"></i></button>
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#viewCourse" (click)="viewCourse(course)"><i class="fa fa-eye"></i></button>
                         </td>
-                      </tr>
+                    </tr>
                 </tbody>
-             </table>
+            </table>
         </div>
-</div>
-      
-      <!-- Modal -->
-      <div class="modal fade" id="createUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    </div>
+    
+    <!-- Modal CREAR USUARIO -->
+    <div class="modal fade" id="createUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Crear usuario secretario</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Crear usuario secretario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" placeholder="Nombre" class="form-control" [(ngModel)]="usuarioCreate.name">
+                    <input type="text" placeholder="Apellidos" class="form-control" [(ngModel)]="usuarioCreate.lastname">
+                    <input type="text" placeholder="Nombre de Usuario" class="form-control" [(ngModel)]="usuarioCreate.nameUser">
+                    <input type="password" placeholder="Contraseña" class="form-control" [(ngModel)]="usuarioCreate.password">
+                    <input type="password" placeholder="Confirmar contraseña" class="form-control" [(ngModel)]="usuarioCreate.password2">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" #btnClose data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" (click)="createUser()">Crear Usuario</button>
+                </div>
             </div>
-            <div class="modal-body">
-              <input type="text" placeholder="Nombre" class="form-control" [(ngModel)]="usuarioCreate.name">
-              <input type="text" placeholder="Apellidos" class="form-control" [(ngModel)]="usuarioCreate.lastname">
-              <input type="text" placeholder="Nombre de Usuario" class="form-control" [(ngModel)]="usuarioCreate.nameUser">
-              <input type="password" placeholder="Contraseña" class="form-control" [(ngModel)]="usuarioCreate.password">
-              <input type="password" placeholder="Confirmar contraseña" class="form-control" [(ngModel)]="usuarioCreate.password2">
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-primary" (click)="createUser()">Crear Usuario</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
+    
+    <!-- Modal VER CAMPOS DEL CURSO  -->
+    <div class="modal fade" id="viewCourse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Campos del curso: {{course}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <button type="button" class="btn btn-primary" style="margin-bottom:20px;" (click)="addField()">
+                            <i class="fa fa-plus"></i> Añadir campo
+                    </button>
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Campos</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor = "let fields of fieldsCourse; let i = index">
+                                <th scope="row">{{i+1}}</th>
+                                <td>{{fields.name}}</td>
+                                <td><button type="button" class="btn btn-danger" (click)="deleteField()"><i class="fa fa-trash"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" #btnClose data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" (click)="createUser()">Crear Usuario</button>
+                </div>
+            </div>
+        </div>
+    </div>
