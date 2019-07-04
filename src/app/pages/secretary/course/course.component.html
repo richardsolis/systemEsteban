@@ -17,12 +17,12 @@
             <th scope="row">{{i+1}}</th>
             <td>{{students.user.firstname}}</td>
             <td>{{students.user.username}}</td>
-            <td *ngIf="!edit" *ngFor="let students2 of students.grades; let i = index">
+            <td *ngFor="let students2 of students.grades; let i = index" >
                 {{students.user.grade}}
               </td>
-            <td *ngIf="edit" *ngFor="let students2 of students.grades; let i = index">
+            <!-- <td  *ngFor="let students2 of students.grades; let i = index">
               <input type="number" value="3" >
-            </td>
+            </td> -->
             <td >
                 <button type="button" class="btn btn-info" (click)="editNota()"><i class="fa fa-pencil"></i></button>
               </td>
