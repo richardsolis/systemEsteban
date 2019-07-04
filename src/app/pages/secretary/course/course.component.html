@@ -6,17 +6,26 @@
             <th scope="col">#</th>
             <th scope="col">Alumno</th>
             <th scope="col">nombre</th>
-            <th scope="col">Nota 1</th>
+            <!-- <ng-container *ngFor="let students of listStudents"> -->
+                <th scope="col" *ngFor="let students2 of listStudents[0].grades">{{students2.gcourses_name}}</th>
+            <!-- </ng-container> -->
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr >
-            <th scope="row">1</th>
-            <td>richard</td>
-            <td>richard solis</td>
-            <td>
-              <input type="number">
+          <tr *ngFor="let students of listStudents; let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{students.user.firstname}}</td>
+            <td>{{students.user.username}}</td>
+            <td *ngIf="!edit" *ngFor="let students2 of students.grades; let i = index">
+                {{students.user.grade}}
+              </td>
+            <td *ngIf="edit" *ngFor="let students2 of students.grades; let i = index">
+              <input type="number" value="3" >
             </td>
+            <td >
+                <button type="button" class="btn btn-info" (click)="editNota()"><i class="fa fa-pencil"></i></button>
+              </td>
           </tr>
         </tbody>
       </table>
