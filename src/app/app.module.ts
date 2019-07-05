@@ -12,8 +12,7 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { SecretaryComponent } from './pages/secretary/secretary.component';
 import { DirectorComponent } from './pages/director/director.component';
 import { CourseComponent } from './pages/secretary/course/course.component';
-import { CourseIComponent } from './pages/director/course-i/course-i.component';
-import { SecretaryIComponent } from './pages/director/secretary-i/secretary-i.component';
+
 
 @NgModule({
   declarations: [
@@ -23,8 +22,7 @@ import { SecretaryIComponent } from './pages/director/secretary-i/secretary-i.co
     SecretaryComponent,
     DirectorComponent,
     CourseComponent,
-    CourseIComponent,
-    SecretaryIComponent,
+
   ],
   imports: [
     BrowserModule,
