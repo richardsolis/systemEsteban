@@ -32,6 +32,16 @@ export class DirectorComponent implements OnInit {
   constructor( public http: Http,public router: Router,public  session:SessionService) { }
 
   ngOnInit() {
+    //CAMBIO DE RUTAS 
+    console.log(this.session.getObject('user').data[0].role)
+       if (this.session.getObject('user').data[0].role == 1) {
+        this.router.navigate(['/admin']);
+       }else if (this.session.getObject('user').data[0].role == 3) {
+         this.router.navigate(['/secretary'])
+       }else {
+         console.log('estas aca')
+       }
+
     // SERVICIO DE  GETCOURSE
     this.http.get('http://dev.atypax.com/jkhan/api.php?function=courses')
     .pipe(map(res => res)).subscribe((res)=> {

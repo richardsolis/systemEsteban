@@ -1,15 +1,13 @@
 <div class="container-w">
-    <h3><button (click)="goBack()" type="button" class="btn btn-outline-secondary"><i class="fa fa-angle-left"></i> Atras</button>Curso: Nombre</h3>
+    <h3><button (click)="goBack()" type="button" class="btn btn-outline-secondary"><i class="fa fa-angle-left"></i> Atras</button>Curso: {{nameCourse}}</h3>
+    <button (click)="editNota()" class="btn btn-primary" style="margin-bottom:30px;"><i class="fa fa-save"></i> Guardar Notas</button>
     <table class="table table-striped">
         <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Alumno</th>
             <th scope="col">nombre</th>
-            <!-- <ng-container *ngFor="let students of listStudents"> -->
-                <th scope="col" *ngFor="let students2 of listStudents[0].grades">{{students2.gcourses_name}}</th>
-            <!-- </ng-container> -->
-            <th scope="col">Acciones</th>
+            <th scope="col" *ngFor="let students2 of listStudents[0].grades">{{students2.gcourses_name}}</th>
           </tr>
         </thead>
         <tbody>
@@ -17,15 +15,9 @@
             <th scope="row">{{i+1}}</th>
             <td>{{students.user.firstname}}</td>
             <td>{{students.user.username}}</td>
-            <td *ngFor="let students2 of students.grades; let i = index" >
-                {{students.user.grade}}
-              </td>
-            <!-- <td  *ngFor="let students2 of students.grades; let i = index">
-              <input type="number" value="3" >
-            </td> -->
-            <td >
-                <button type="button" class="btn btn-info" (click)="editNota()"><i class="fa fa-pencil"></i></button>
-              </td>
+            <td  *ngFor="let students2 of students.grades; let i = index">
+              <input type="number" [(ngModel)]="students2.grade">
+            </td>
           </tr>
         </tbody>
       </table>

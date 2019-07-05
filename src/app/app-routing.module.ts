@@ -12,11 +12,10 @@ import { CourseComponent } from './pages/secretary/course/course.component'
 
 // ROL DIRECTOR
 import { DirectorComponent } from './pages/director/director.component';
-import { SecretaryIComponent } from './pages/director/secretary-i/secretary-i.component';
-import { CourseIComponent } from './pages/director/course-i/course-i.component';
 
 
 const routes: Routes = [
+  { path: '', component: LoginComponent},
   { path: 'login', component: LoginComponent},
 
   { path: 'admin', component: AdminComponent},
@@ -25,8 +24,6 @@ const routes: Routes = [
   { path: 'secretary/course/:id',component: CourseComponent}, 
 
   {path: 'director', component: DirectorComponent,},
-  {path: 'director/secretary', component: SecretaryIComponent,},
-  {path: 'director/course', component: CourseIComponent,},
 ];
 
 @NgModule({

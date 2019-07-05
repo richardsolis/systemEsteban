@@ -14,6 +14,14 @@ export class SecretaryComponent implements OnInit {
   constructor(public http: Http,public router: Router, public session:SessionService) { }
 
   ngOnInit() {
+    if (this.session.getObject('user').data[0].role == 2) {
+      this.router.navigate(['/director']);
+     }else if (this.session.getObject('user').data[0].role == 1) {
+       this.router.navigate(['/admin'])
+     }else {
+       console.log('estas aca')
+     }
+
     this.http.get('http://dev.atypax.com/jkhan/api.php?function=courses')
     .pipe(map(res => res)).subscribe((res)=> {
       var reS;
